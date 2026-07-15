@@ -1,1 +1,2 @@
 # BPMeasurementApp
+BPMeasurement App is an application built using ASP.NET that records blood pressure reading of a patient whenever the reading is entered. The input fields include Systolic (mm Hg), Diastolic (mm Hg), Date of measurement, and Position while taking the reading namely, standing, sitting, and lying down. Based on the input entered, the application also records the category of the severity, such as Hypertensive Crisis, Hypertension stage 1, normal etc.
