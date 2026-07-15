@@ -1,0 +1,39 @@
+﻿@model List<BPMeasurementApp.Entities.Measurement>  
+@{  
+    ViewData["Title"] = "All Movies";  
+    Dictionary<int, (string Category, string Color)> categoriesAndColors = ViewData["categoriesAndColors"] as Dictionary<int, (string Category, string Color)> ?? new Dictionary<int, (string Category, string Color)>();  
+    string color;  
+    string category;  
+}  
+
+<h1>All Measurements</h1>  
+<a asp-controller="Measurements" asp-action="Create">Add new measurement</a>  
+<table class="table table-bordered table-striped">  
+    <thead>  
+        <tr>  
+            <th>Reading</th>  
+            <th>Category</th>  
+            <th>Position</th>  
+            <th>Date Taken</th>  
+            <th>Action</th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        @foreach (var measurement in Model)  
+        {
+            color = categoriesAndColors.TryGetValue(measurement.MeasurementId, out var measurementColor) ? measurementColor.Color : "Gray";
+            category = categoriesAndColors.TryGetValue(measurement.MeasurementId, out var categoryAndColor) ? categoryAndColor.Category : "Unknown"; 
+            <tr>  
+                <td style="color: @color">@measurement.Systolic/@measurement.Diastolic</td>
+                <td style="color: @color">@category</td>
+                <td>@measurement.Position?.Name</td>  
+                <td>@measurement.DateTaken</td>  
+                <td>  
+                    <a asp-controller="Measurements" asp-action="Edit" asp-route-id="@measurement.MeasurementId">Edit</a>  
+                    <span class="mx-1">|</span>  
+                    <a asp-controller="Measurements" asp-action="Delete" asp-route-id="@measurement.MeasurementId">Delete</a>  
+                </td>  
+            </tr>  
+        }  
+    </tbody>  
+</table>

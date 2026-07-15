@@ -1,0 +1,18 @@
+﻿@model BPMeasurementApp.Entities.Measurement
+
+@{
+    ViewData["Title"] = "Delete Measurement";
+}
+
+<h6>Confirm Deletion</h6>
+<p>Systolic: @Model.Systolic (@Model.Systolic)</p>
+<p>Diastolic: @Model.Diastolic (@Model.Diastolic)</p>
+<p>Date taken: @Model.DateTaken (@Model.DateTaken)</p>
+
+
+<form asp-controller="Measurements" asp-action="Delete" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" asp-for="MeasurementId" />
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Measurements" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

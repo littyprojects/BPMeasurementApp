@@ -1,0 +1,16 @@
+{
+  "version": "3.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jqueryui@1.14.1",
+      "destination": "wwwroot/jqueryui/"
+    }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "jqueryui@1.14.1",
+  "destination": "wwwroot/lib/jqueryui/"
+}
+]
+}

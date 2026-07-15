@@ -1,0 +1,52 @@
+﻿@model MeasurementViewModel
+
+@{
+    ViewData["Title"] = "Edit Movie";
+}
+
+<form asp-controller="Measurements" asp-action="Edit" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="ActiveMeasurement.Systolic">Systoloic (mm Hg)</label>
+        <input type="text" asp-for="ActiveMeasurement.Systolic" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveMeasurement.Diastolic">Diastolic (mm Hg)</label>
+        <input type="text" asp-for="ActiveMeasurement.Diastolic" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveMeasurement.PositionId">Position</label>
+        <!-- add a drop-down for position options: -->
+        <select asp-for="ActiveMeasurement.PositionId" class="form-control">
+            <option value="">Select a genre..</option>
+            @foreach (var g in Model.Positions)
+            {
+                <option value="@g.PositionId">@g.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveMeasurement.DateTaken">Date of measurement</label>
+        <input type="text" asp-for="ActiveMeasurement.DateTaken" class="form-control datepicker" />
+    </div>
+
+    <input type="hidden" asp-for="ActiveMeasurement.MeasurementId" />
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="Measurements" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
+
+@section Scripts {
+    <script>
+        $(function() {
+            $(".datepicker").datepicker({
+                maxDate: "0" //Sets max date value to today
+            });
+        });
+    </script>
+}
+
